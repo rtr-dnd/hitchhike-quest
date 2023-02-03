@@ -1,29 +1,33 @@
+using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HandWrap : MonoBehaviour
 {
-    public Material enabledMaterial;
-    public Material disabledMaterial;
-    public bool isEnabled { get; private set; }
-    public void SetEnabled (bool enabled)
-    {
-        GetRenderer().material = enabled ? enabledMaterial : disabledMaterial;
-        GetSkelton().isUpdating = enabled;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private SkinnedMeshRenderer GetRenderer()
-    {
-        return gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
-    }
-    private OVRSkeleton GetSkelton()
-    {
-        return gameObject.GetComponentInChildren<OVRSkeleton>();
-    }
+  public Material enabledMaterial;
+  public Material disabledMaterial;
+  public SkinnedMeshRenderer meshRenderer;
+  public bool log = false;
+  public bool isEnabled { get; private set; }
+  void Start()
+  {
+    GetRenderer().material = disabledMaterial;
+  }
+  public void SetEnabled(bool enabled)
+  {
+    isEnabled = enabled;
+    // GetRenderer().material = enabled ? enabledMaterial : disabledMaterial;
+    GetRenderer().material.color = new Color(1f, 1f, 1f, enabled ? 1f : 0.2f);
+    GetSkelton().isUpdating = enabled;
+  }
+  private SkinnedMeshRenderer GetRenderer()
+  {
+    return gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+  }
+  private OVRSkeleton GetSkelton()
+  {
+    return gameObject.GetComponentInChildren<OVRSkeleton>();
+  }
 }
