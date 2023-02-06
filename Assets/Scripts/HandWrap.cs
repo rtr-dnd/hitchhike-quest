@@ -19,7 +19,7 @@ public class HandWrap : MonoBehaviour
   {
     isEnabled = enabled;
     // GetRenderer().material = enabled ? enabledMaterial : disabledMaterial;
-    GetRenderer().material.color = new Color(1f, 1f, 1f, enabled ? 1f : 0.2f);
+    GetRenderer().material.color = new Color(0.11f, 0.46f, 1f, enabled ? 1f : 0.2f);
     GetSkelton().isUpdating = enabled;
   }
   private SkinnedMeshRenderer GetRenderer()
